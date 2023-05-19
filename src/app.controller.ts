@@ -14,7 +14,7 @@ export class AppController {
   }
 
   @Post('/post')
-  putdata(@Body() b: myData[]) {
+  putdata(@Body() b: myData) {
     return this?.appService?.postData(b);
   }
 
@@ -26,10 +26,6 @@ export class AppController {
   @Delete('delbyid')
   DelById(@Body() b: any) {
     return this?.appService?.delById(b.id);
-  }
-  @Patch('write')
-  PatchData(@Body() b: myData[]) {
-    return this.appService.writeData(b)
   }
 }
 

@@ -14,26 +14,25 @@ export class AppService {
     return JSON.parse(data.toString());
   }
 
-  writeData(Body: myData[]):myData[]{
+  writeData(Body: myData[]): myData[] {
     fs?.writeFileSync(this.file, JSON.stringify(Body));
     return this.getdata();
   }
 
-  postData(Body: myData[]) {
+  postData(Body: myData) {
     let data = []
-     data=this.getdata();
-     let d=this.writeData(Body)
-     data.push(d)
-     this.writeData(data);
+    data = this.getdata();
+   //  console.log(data)
+    this.writeData([...data, { ...Body }])
     return this.getdata();
   }
 
 
-  updateById(body:{id:Number,name:string}) :myData[]{
+  updateById(body: { id: Number, name: string }): myData[] {
     let data = []
     data = this.getdata();
     let responce = []
-    responce = data.map((item:myData) => {
+    responce = data.map((item: myData) => {
       if (item.id == body.id) {
         item.name = body.name;
       }
@@ -44,7 +43,7 @@ export class AppService {
   delById(id: myData): myData[] {
     let data = []
     data = this.getdata();
-    const result = data.filter((item: any):myData[] => {
+    const result = data.filter((item: any): myData[] => {
       if (item.id != id) {
         return item;
       }

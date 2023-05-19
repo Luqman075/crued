@@ -14,13 +14,13 @@ export class AppController {
   }
 
   @Post('/post')
-  putdata(@Body() b: any) {
+  putdata(@Body() b: myData[]) {
     return this?.appService?.postData(b);
   }
 
   @Patch('/updatebyid')
   UpdateData(@Body() b:myData) {
-    return this?.appService?.updateById(b.id,b.name);
+    return this?.appService?.updateById(b);
   }
 
   @Delete('delbyid')
